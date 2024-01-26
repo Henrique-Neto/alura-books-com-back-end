@@ -1,12 +1,16 @@
 const elementoInserirLivros = document.getElementById('livros');
+const elementoValorTotalLivros = document.getElementById('valor_total_livros_disponiveis');
 
-function exibiLivrosTela(listaLivros){
+function exibiLivrosTela(listaLivros) {
+  elementoValorTotalLivros.innerHTML = '';
   elementoInserirLivros.innerHTML = '';
-    listaLivros.forEach(livro => {
-        elementoInserirLivros.innerHTML += 
-        `
+  listaLivros.forEach(livro => {
+    //let disponibilidade = verificarDisponibilidade(livro)
+    let disponibilidade = livro.quantidade > 0 ? 'livro__imagens' : 'livro__imagens indisponivel';
+    elementoInserirLivros.innerHTML +=
+      `
         <div class="livro">
-            <img class="livro__imagens" src="${livro.imagem}" alt="${livros.alt}" />
+            <img class='${disponibilidade}' src="${livro.imagem}" alt="${livros.alt}" />
             <h2 class="livro__titulo">
                 ${livro.titulo}
             </h2>
@@ -16,6 +20,15 @@ function exibiLivrosTela(listaLivros){
           <span class="tag">${livro.categoria}</span>
         </div>
       </div>        
-        `    
-    })
+        `
+  })
 }
+
+// function verificarDisponibilidade(livro){
+//   if (livro.quantidade > 0 ){
+//     return 'livro__imagens'
+//   } else {
+//     return 'livro__imagens indisponivel' 
+//   } 
+//   return livro.quantidade > 0 ? 'livro__imagens' : 'livro__imagens indisponivel'
+// }
